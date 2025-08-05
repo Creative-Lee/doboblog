@@ -1,5 +1,5 @@
 ---
-description:
+description: 프로젝트의 GitHub Flow 브랜치 관리 및 AI 협업 규칙
 globs:
 alwaysApply: true
 ---
