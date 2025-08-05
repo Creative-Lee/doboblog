@@ -1,0 +1,134 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# GitHub Flow 브랜치 관리 규칙
+
+## 🌟 GitHub Flow 원칙
+
+본 프로젝트는 **GitHub Flow**를 엄격히 따릅니다. 모든 작업은 feature 브랜치에서 진행하며, main 브랜치는 항상 배포 가능한 상태를 유지합니다.
+
+## 🚀 브랜치 전략
+
+### 1. Main 브랜치
+- **목적**: 항상 배포 가능한 안정적인 코드 유지
+- **규칙**: 
+  - 직접 커밋 금지 ❌
+  - Pull Request를 통해서만 변경 가능
+  - 모든 변경사항은 리뷰 완료 후 병합
+
+### 2. Feature 브랜치
+- **명명 규칙**: `feature/[기능명]` 또는 `feature/[이슈번호]-[간단한-설명]`
+- **예시**:
+  - `feature/setup-turborepo`
+  - `feature/mdx-blog-setup`
+  - `feature/express-api`
+  - `feature/docker-config`
+
+### 3. 기타 브랜치 유형
+- **Hotfix**: `hotfix/[문제-설명]`
+- **Docs**: `docs/[문서-유형]`
+- **Refactor**: `refactor/[리팩터링-범위]`
+
+## 📋 워크플로우
+
+### 1단계: Feature 브랜치 생성
+```bash
+# main에서 최신 상태 확인
+git sw main 
+git pull origin main
+
+# feature 브랜치 생성 및 이동
+git sw -c feature/your-feature-name
+```
+
+### 2단계: 작업 진행
+- 작은 단위로 자주 커밋
+- 커밋 메시지는 [Conventional Commits](mdc:https:/www.conventionalcommits.org) 규칙 따름
+
+### 3단계: Pull Request
+- GitHub에서 main으로 PR 생성
+- 코드 리뷰 후 승인받기
+- Squash Merge 사용 권장
+
+### 4단계: 정리
+```bash
+# main으로 이동 후 업데이트
+git sw main
+git pull origin main
+
+# 병합된 feature 브랜치 삭제
+git branch -d feature/your-feature-name
+```
+
+## 💡 커밋 메시지 규칙
+
+### 포맷
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+### Type 종류
+- `feat`: 새로운 기능
+- `fix`: 버그 수정
+- `docs`: 문서 변경
+- `lint`: 코드 스타일 변경 (포맷팅, 세미콜론 등)
+- `refactor`: 코드 리팩터링
+- `test`: 테스트 추가/수정
+- `config`: 빌드 프로세스, 패키지 매니저 설정 등
+
+### 예시
+```bash
+feat(blog): MDX 컴포넌트 렌더링 추가
+
+- MDX 파일 파싱 및 컴포넌트 매핑
+- 코드 하이라이팅 지원
+- 반응형 이미지 처리
+
+Closes #123
+```
+
+## ⚠️ 주의사항
+
+### 금지 사항
+- ❌ main 브랜치에 직접 push
+- ❌ force push (`git push --force`)
+- ❌ merge commit (Squash merge 사용)
+- ❌ 리뷰 없이 PR 병합
+
+### 권장 사항
+- ✅ 작은 단위의 PR 작성
+- ✅ 명확한 PR 제목과 설명
+- ✅ 코드 리뷰 적극 참여
+- ✅ CI/CD 통과 후 병합
+
+## 🔧 브랜치 보호 규칙 (GitHub 설정)
+
+```yaml
+# .github/branch-protection.yml (참고용)
+main:
+  required_status_checks:
+    - build
+    - test
+    - lint
+  enforce_admins: true
+  required_pull_request_reviews:
+    required_approving_review_count: 1
+    dismiss_stale_reviews: true
+  restrictions: null
+```
+
+## 📚 참고 문서
+
+- [GitHub Flow 공식 문서](mdc:https:/guides.github.com/introduction/flow)
+- [Conventional Commits](mdc:https:/www.conventionalcommits.org)
+- [Git 브랜치 전략](mdc:https:/nvie.com/posts/a-successful-git-branching-model)
+
+---
+
+**기억하세요**: GitHub Flow는 단순함이 핵심입니다. 복잡한 브랜치 전략보다는 빠른 피드백과 지속적인 배포에 집중합니다! 🚀
