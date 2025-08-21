@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "no-individual-engines": {
+      "message": "Individual apps must NOT specify 'engines' field. Use root package.json only.",
+      "severity": "error",
+      "patterns": ["apps/*/package.json"],
+      "disallowed": ["engines"]
+    }
+  }
+}

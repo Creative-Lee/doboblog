@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# engines 필드 검증 (필수)
+pnpm validate-engines
+
+# 개별 앱 package.json에 engines 필드 있는지 검사
+if grep -r '"engines"' apps/*/package.json; then
+  echo "❌ Individual apps must NOT have 'engines' field!"
+  echo "   Remove 'engines' from individual app package.json files"
+  exit 1
+fi
+
+echo "✅ Engine validation passed"
