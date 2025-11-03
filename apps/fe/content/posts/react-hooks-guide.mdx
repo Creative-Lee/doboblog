@@ -1,0 +1,101 @@
+---
+title: "React Hooks 완벽 가이드"
+date: "2025-10-28"
+category: "dev"
+tags: ["react", "hooks", "frontend"]
+description: "React Hooks의 기본부터 고급 패턴까지 알아봅니다"
+---
+
+# React Hooks 완벽 가이드
+
+React Hooks는 함수형 컴포넌트에서 상태와 생명주기 기능을 사용할 수 있게 해주는 강력한 기능입니다.
+
+## 기본 Hooks
+
+### useState
+
+상태 관리를 위한 가장 기본적인 Hook입니다.
+
+```typescript
+import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+    </div>
+  );
+}
+```
+
+### useEffect
+
+부수 효과를 처리하기 위한 Hook입니다.
+
+```typescript
+import { useEffect } from 'react';
+
+function DataFetcher() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetchData().then(result => setData(result));
+
+    return () => {
+      // cleanup
+    };
+  }, []); // 의존성 배열
+
+  return <div>{data && JSON.stringify(data)}</div>;
+}
+```
+
+## 고급 Hooks
+
+### useCallback
+
+함수를 메모이제이션하여 불필요한 재생성을 방지합니다.
+
+```typescript
+const handleClick = useCallback(() => {
+  console.log(count);
+}, [count]);
+```
+
+### useMemo
+
+계산 비용이 큰 값을 메모이제이션합니다.
+
+```typescript
+const expensiveValue = useMemo(() => {
+  return computeExpensiveValue(a, b);
+}, [a, b]);
+```
+
+## 커스텀 Hooks
+
+재사용 가능한 로직을 커스텀 Hook으로 만들 수 있습니다.
+
+```typescript
+function useLocalStorage(key: string, initialValue: string) {
+  const [value, setValue] = useState(() => {
+    const item = window.localStorage.getItem(key);
+    return item ? JSON.parse(item) : initialValue;
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem(key, JSON.stringify(value));
+  }, [key, value]);
+
+  return [value, setValue];
+}
+```
+
+## 결론
+
+React Hooks를 잘 활용하면 더 깔끔하고 재사용 가능한 컴포넌트를 만들 수 있습니다!
