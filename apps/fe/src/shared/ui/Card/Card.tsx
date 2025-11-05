@@ -1,5 +1,5 @@
 import { type HTMLAttributes, forwardRef } from 'react';
-import { cn } from '@/shared/lib';
+import { cn } from '@/shared/lib/tailwind';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {}
 

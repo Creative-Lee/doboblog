@@ -1,6 +1,6 @@
-import { type PostMetadata } from '@/entities/post';
-import { PostCard } from '@/entities/post';
-import { Typography } from '@/shared/ui';
+import { type PostMetadata } from '@/entities/post/model/types';
+import { PostCard } from '@/entities/post/ui/PostCard';
+import { Typography } from '@/shared/ui/Typography/Typography';
 
 export interface PostListProps {
   posts: PostMetadata[];

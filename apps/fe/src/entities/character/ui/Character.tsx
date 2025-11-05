@@ -1,7 +1,7 @@
 'use client';
 
-import { type CharacterPosition } from '../model';
-import { cn } from '@/shared/lib';
+import { type CharacterPosition } from '../model/types';
+import { cn } from '@/shared/lib/tailwind';
 
 export interface CharacterProps {
   position: CharacterPosition;

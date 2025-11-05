@@ -1,10 +1,10 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { Character } from '@/entities/character';
-import { CATEGORIES, type CategoryId } from '@/shared/config';
-import { useCharacterMovement } from '@/features/characterMovement';
-import { cn } from '@/shared/lib';
+import { Character } from '@/entities/character/ui/Character';
+import { CATEGORIES, type CategoryId } from '@/shared/config/categories';
+import { useCharacterMovement } from '@/features/characterMovement/model/useCharacterMovement';
+import { cn } from '@/shared/lib/tailwind';
 
 interface CategoryArea {
   id: CategoryId;
