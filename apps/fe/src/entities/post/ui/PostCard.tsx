@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { type PostMetadata } from '../model';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/shared/ui';
-import { formatDate } from '@/shared/lib';
-import { CATEGORIES } from '@/shared/config';
+import { type PostMetadata } from '../model/types';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/shared/ui/Card/Card';
+import { formatDate } from '@/shared/lib/date';
+import { CATEGORIES } from '@/shared/config/categories';
 
 export interface PostCardProps {
   post: PostMetadata;

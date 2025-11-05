@@ -1,4 +1,4 @@
-import { type CategoryId } from '@/shared/config';
+import { type CategoryId } from '@/shared/config/categories';
 
 export interface Post {
   slug: string;

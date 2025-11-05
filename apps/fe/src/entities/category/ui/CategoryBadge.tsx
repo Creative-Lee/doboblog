@@ -1,5 +1,5 @@
-import { type Category } from '../model';
-import { cn } from '@/shared/lib';
+import { type Category } from '../model/types';
+import { cn } from '@/shared/lib/tailwind';
 
 export interface CategoryBadgeProps {
   category: Category;

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { type CharacterState, type CharacterPosition } from '@/entities/character';
+import { type CharacterState, type CharacterPosition } from '@/entities/character/model/types';
 
 export function useCharacterMovement(initialPosition: CharacterPosition) {
   const [characterState, setCharacterState] = useState<CharacterState>({

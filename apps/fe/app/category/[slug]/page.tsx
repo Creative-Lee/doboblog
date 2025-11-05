@@ -1,11 +1,10 @@
 import { notFound } from 'next/navigation';
-import { PostList } from '@/widgets/PostList';
-import { Typography } from '@/shared/ui';
-import { CATEGORIES, type CategoryId } from '@/shared/config';
+import { CategoryPage } from '@/page-views/category/CategoryPage';
+import { CATEGORIES, type CategoryId } from '@/shared/config/categories';
 import { getAllPosts } from '@/entities/post/api/mdx';
-import { sortByDate } from '@/shared/lib';
+import { sortByDate } from '@/shared/lib/date';
 
-interface CategoryPageProps {
+interface CategoryPageRouteProps {
   params: Promise<{
     slug: string;
   }>;
@@ -17,7 +16,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
+export default async function CategoryPageRoute({ params }: CategoryPageRouteProps) {
   const { slug } = await params;
 
   // 카테고리 유효성 검사
@@ -33,23 +32,5 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const categoryPosts = allPosts.filter((post) => post.category === categoryId);
   const sortedPosts = sortByDate(categoryPosts);
 
-  return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="mb-8">
-        <div className="mb-4 flex items-center gap-3">
-          <span className="text-5xl">
-            {categoryId === 'dev' && '💻'}
-            {categoryId === 'money' && '💰'}
-            {categoryId === 'retrospect' && '📝'}
-          </span>
-          <Typography variant="h1">{category.name}</Typography>
-        </div>
-        <Typography variant="muted" className="text-lg">
-          {category.description}
-        </Typography>
-      </div>
-
-      <PostList posts={sortedPosts} emptyMessage={`아직 ${category.name} 카테고리에 글이 없습니다.`} />
-    </div>
-  );
+  return <CategoryPage category={category} posts={sortedPosts} />;
 }

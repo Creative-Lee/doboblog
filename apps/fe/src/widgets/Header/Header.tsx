@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { ThemeToggle } from '@/features/themeToggle';
-import { Button } from '@/shared/ui';
+import { ThemeToggle } from '@/features/themeToggle/ui/ThemeToggle';
+import { Button } from '@/shared/ui/Button/Button';
 
 export function Header() {
   return (
